@@ -1,22 +1,25 @@
 const Page = require('./Page');
-const arrLang = [];
 
 class ProfilePage extends Page {
 
-    get menu () {
-        return $('#nav-bar-toggle');
+    get title () {
+        return $("//h6[text()='user']");
     }
 
-    get edit () {
-        return $('div.MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel');
+    get btnBack() {
+        return $(".btn.btn-link")
+    }
+
+    get editBtn () {
+        return $("div[class='ant-row justify-content-between mb-3'] button[type='button']");
     }
 
     get profileImageInitials () {
-        return $('div.profile-image initials');
+        return $("//div[@class='profile-image initials']");
     }
 
     get profileData () {
-        return $('div.ant-col p-3');
+        return $(".ant-col.p-3");
     }
 
     get inputFirstName () {
@@ -50,23 +53,30 @@ class ProfilePage extends Page {
         return $('button[type="type"]');
     }
 
-    async fillForm (firstName, lastName, jobTitle, imageLink, about, arrLang) {
+    async fillForm (firstName, lastName, jobTitle, imageLink, about, lang) {
+        await this.open()
         await this.inputFirstName.setValue(firstName);
         await this.inputLastName.setValue(lastName);
         await this.inputJobTitle.setValue(jobTitle);
         await this.inputImageLink.setValue(imageLink);
         await this.inputAbout.setValue(about);
-        await this.inputLanguages.setValue(arrLang);
-        await this.btnSave.click();
+        await this.inputLanguages.setValue(lang);
     }
 
-    clickSave (btnSave) {
+    clickBackBtn () {
+        this.btnBack.click();
+    }
+
+    clickSaveBtn () {
         this.btnSave.click();
     }
 
-    clickCancel (btnCancel) {
+    clickCancelBtn () {
         this.btnCancel.click();
+    }
+
+    open() {
+        return super.open('/profile');
     }
 }
 module.exports = new ProfilePage();
-

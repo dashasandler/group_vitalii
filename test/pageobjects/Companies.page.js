@@ -19,4 +19,5 @@ class CompaniesPage extends Page {
     }
 
 }
+
 module.exports = new CompaniesPage();

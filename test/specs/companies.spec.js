@@ -19,7 +19,7 @@ describe("1-CompPage", () => {
     });
 
     it("Load More button downloaded more companies' card", async () =>{
-        // await LoginPage.login("tolik.test1@yahoo.com", "Tolik");
+        // await LoginPage.login("tolik.test1@yahoo.com",   "Tolik");
         // await PublicationsPage.menuButton.click();
         await CompaniesPage.loadMoreButton.click()
         // await new Promise(resolve => setTimeout(resolve, 5000));

@@ -2,7 +2,7 @@ const Page = require('./page');
 
 class CompaniesPage extends Page {
 
-    get menuButton() {
+    get btnMenu() {
         return $('//button[@id = "nav-bar-toggle"]');
     }
 

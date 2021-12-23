@@ -13,7 +13,6 @@ class PeoplePage extends Page {
     get inviteButton(){
         return $('//button[text()="Invite"]')
     }
-
 }
 
 module.exports = new PeoplePage();

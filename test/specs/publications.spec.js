@@ -9,9 +9,10 @@ describe('My Post', () => {
         await LoginPage.login('Manya111@test.com', 'Manya111@');
     });
 
-    it("Test", async () => {
+    it("should publicationsTitle be exist and has text 'publications' ", async () => {
 
+        await expect(PublicationsPage.publicationsTitle).toBeExisting();
+        await expect(PublicationsPage.publicationsTitle).toHaveTextContaining('publications');
     });
-
 
 });

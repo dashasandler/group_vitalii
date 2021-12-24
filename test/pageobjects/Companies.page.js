@@ -7,23 +7,23 @@ class CompaniesPage extends Page {
     }
 
     get firstCompanyCard() {
-        return $('//div[1]/a[1]');
+        return $('.d-flex .d-flex:nth-child(1) a:nth-child(1)');
     }
 
     get imageFirstCompany() {
-        return $('//div[1]/a/div/img');
+        return $('.d-flex .d-flex:nth-child(1) img');
     }
 
     get nameFirstCompany() {
-        return $('//div[1]/a/h2');
+        return $('.d-flex .d-flex:nth-child(1) h2');
     }
 
     get descriptionFirstCompany() {
-        return $('//div[1]/p');
+        return $('.d-flex .d-flex:nth-child(1) p');
     }
 
     get problemsFirstCompany() {
-        return $('//div[1]/div[text() = "Problems: "]');
+        return $('.d-flex .d-flex:nth-child(1) .mt-auto');
     }
 
     get loadMoreBtn() {

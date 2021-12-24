@@ -24,7 +24,7 @@ describe("1-CompPage", () => {
     it("Click On 1st Company Tile", async () => {
         await CompaniesPage.firstCompanyCard.scrollIntoView()
         await CompaniesPage.firstCompanyCard.click()
-        // await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
     });
 
 })

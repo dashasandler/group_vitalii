@@ -42,6 +42,17 @@ class CompaniesPage extends Page {
     openCompaniesPage() {
         return super.open("/companies") ;
     }
+
+    trimString(problemString){
+        let newString = '';
+        for(let i = 0; i < problemString.length; i++){
+            if(problemString[i] !== ' '){
+                newString += problemString[i]
+            } else break;
+        }
+        return newString;
+    }
+
 }
 
 module.exports = new CompaniesPage();

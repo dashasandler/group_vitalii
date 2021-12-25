@@ -1,5 +1,5 @@
 const LoginPage = require("../pageobjects/Login.page");
-const PublicationsPage = require("../pageobjects/Publications.page.Mine")
+const PublicationsPage = require("../pageobjects/Publications.page")
 const MenuPage = require("../pageobjects/Menu.page")
 const CompaniesPage = require('../pageobjects/Companies.page')
 
@@ -11,7 +11,7 @@ describe("CompaniesPage", () => {
 
     it ("CP-1: Verify if it is the Companies page", async () => {
         await LoginPage.login("tolik.test1@yahoo.com", "Tolik");
-        await PublicationsPage.menuButton.click();
+        await MenuPage.clickMenu()
         await MenuPage.companiesOption.click();
         const title = await CompaniesPage.companiesPageTitle.getText();
         await expect(title).toEqual('companies')

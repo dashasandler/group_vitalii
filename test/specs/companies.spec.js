@@ -1,5 +1,5 @@
 const LoginPage = require("../pageobjects/Login.page");
-const PublicationsPage = require("../pageobjects/Publications.page")
+const PublicationsPage = require("../pageobjects/Publications.page.Mine")
 const MenuPage = require("../pageobjects/Menu.page")
 const CompaniesPage = require('../pageobjects/Companies.page')
 

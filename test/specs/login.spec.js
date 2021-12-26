@@ -1,5 +1,5 @@
 const LoginPage = require("../pageobjects/Login.page");
-const PublicationPage = require('../pageobjects/Publication.page');
+const PublicationPage = require('../pageobjects/Publications.page');
 
 
 describe("TC1 - Login page", () => {

@@ -1,12 +1,13 @@
 const LoginPage = require('../pageobjects/Login.page');
 const PublicationsPage = require('../pageobjects/Publications.page');
+const LoginData = require('../data/login.data');
 
 
 describe('My Post', () => {
 
     before(async () => {
         await browser.maximizeWindow();
-        await LoginPage.login('Manya111@test.com', 'Manya111@');
+        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
     });
 
     it("should publicationsTitle be exist and has text 'publications' ", async () => {

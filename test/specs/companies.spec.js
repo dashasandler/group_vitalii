@@ -2,6 +2,7 @@ const LoginPage = require("../pageobjects/Login.page");
 const PublicationsPage = require("../pageobjects/Publications.page");
 const MenuPage = require("../pageobjects/Menu.page");
 const CompaniesPage = require('../pageobjects/Companies.page');
+const LoginData = require('../data/login.data');
 
 describe("CompaniesPage", () => {
 
@@ -10,7 +11,7 @@ describe("CompaniesPage", () => {
     })
 
     it ("CP-1: Verify if it is the Companies page", async () => {
-        await LoginPage.login("tolik.test1@yahoo.com", "Tolik");
+        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
         await MenuPage.clickMenu();
         await MenuPage.companiesOption.click();
         const title = await CompaniesPage.companiesPageTitle.getText();

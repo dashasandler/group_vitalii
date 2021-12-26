@@ -40,7 +40,7 @@ class CompaniesPage extends Page {
     }
 
     openCompaniesPage() {
-        return super.open("/companies") ;
+        return super.open("/companies");
     }
 }
 

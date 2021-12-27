@@ -69,4 +69,5 @@ describe("TC1 - Login page", () => {
 
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
+
 });

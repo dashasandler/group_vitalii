@@ -32,5 +32,4 @@ class LoginPage extends Page {
         return super.open("/login");
     }
 }
-
 module.exports = new LoginPage();

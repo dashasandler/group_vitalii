@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class ProblemsCreate extends Page {
+class ProblemsCreatePage extends Page {
 
     get inputTitle() {
         return $('#title');
@@ -15,7 +15,7 @@ class ProblemsCreate extends Page {
     }
 
     get inputContent() {
-        return $('//textarea[@class="class="w-md-editor-text-input"]');
+        return $('//textarea[@class="w-md-editor-text-input "]');
     }
 
     get btnCancel() {
@@ -42,4 +42,4 @@ class ProblemsCreate extends Page {
     }
 }
 
-module.exports = new ProblemsCreate();
+module.exports = new ProblemsCreatePage();

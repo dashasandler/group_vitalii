@@ -1,6 +1,6 @@
 const Page = require ('./Page');
 
-class MenuPage extends Page {
+class GlobalNavigationPage extends Page {
 
     get btnMenu() {
         return $("#nav-bar-toggle");
@@ -62,4 +62,4 @@ class MenuPage extends Page {
         return super.open('/menu');
     }
 }
-module.exports = new MenuPage();
+module.exports = new GlobalNavigationPage();

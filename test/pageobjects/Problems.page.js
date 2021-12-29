@@ -46,6 +46,10 @@ class ProblemsPage extends Page {
         return $('button[@aria-label="Go to next page"]');
     }
 
+    get problemsPageTitle() {
+        return $('//h6[text()="problems"]')
+    }
+
     open() {
         return super.open('/problems');
     }

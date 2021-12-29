@@ -1,4 +1,5 @@
 const Page = require('./Page');
+const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 
 class PeoplePage extends Page {
 
@@ -12,6 +13,11 @@ class PeoplePage extends Page {
 
     get inviteButton(){
         return $('//button[text()="Invite"]')
+    }
+
+    getToPeoplePage(){
+        globalNavigationPage.clickMenu();
+        globalNavigationPage.clickPeople();
     }
 }
 

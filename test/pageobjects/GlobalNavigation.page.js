@@ -7,7 +7,7 @@ class GlobalNavigationPage extends Page {
     }
 
     get publicationsOption(){
-        return $("#publications");
+        return $("//span[text()='Publications']");
     }
 
     get peopleOption(){

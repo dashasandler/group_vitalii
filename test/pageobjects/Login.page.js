@@ -13,6 +13,14 @@ class LoginPage extends Page {
         return $("button[type=\"submit\"]");
     }
 
+    get titleOfInputEmailBox() {
+        return $("//label[@id = 'email-label']" );
+    }
+
+    get titleOfInputPasswordBox() {
+        return $("//label[@id = 'password-label'] ");
+    }
+
     async login(useremail, password) {
         await this.open();
         await this.inputEmail.setValue(useremail);
@@ -24,5 +32,4 @@ class LoginPage extends Page {
         return super.open("/login");
     }
 }
-
 module.exports = new LoginPage();

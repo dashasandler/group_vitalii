@@ -1,6 +1,6 @@
 const LoginPage = require("../pageobjects/Login.page");
 const PublicationsPage = require("../pageobjects/Publications.page");
-const MenuPage = require("../pageobjects/Menu.page");
+const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 const CompaniesPage = require('../pageobjects/Companies.page');
 const LoginData = require('../data/login.data');
 
@@ -12,8 +12,8 @@ describe("CompaniesPage", () => {
 
     it ("CP-1: Verify if it is the Companies page", async () => {
         await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
-        await MenuPage.clickMenu();
-        await MenuPage.companiesOption.click();
+        await globalNavigationPage.clickMenu();
+        await globalNavigationPage.companiesOption.click();
         const title = await CompaniesPage.companiesPageTitle.getText();
         await expect(title).toEqual('companies');
     })

@@ -30,6 +30,8 @@ class CompaniesPage extends Page {
         return $('//div[text()="Load more..."]');
     }
 
+    get anyCompanyCard() {"//div[@class = 'mt-auto']"};
+
     async openCompany() {
         await this.openCompaniesPage();
         await this.firstCompanyCard.click()

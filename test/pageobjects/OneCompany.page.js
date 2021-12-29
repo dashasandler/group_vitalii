@@ -54,6 +54,29 @@ class OneCompanyPage extends Page {
         return $('#comment-btn');
     }
 
+    get inputCommentField(){
+        return $('#comment-input');
+    }
+
+    get sendBtn(){
+        return $('#send-btn');
+    }
+
+    async openCompany() {
+        await this.openOneCompanyPage();
+        await this.likeBtn.click();
+        await this.commentBtn.click();
+        await this.firstTechnicalTaskLink();
+    }
+
+    async clickLoadMore() {
+        await this.openOneCompanyPage();
+        await this.btnBack.click()
+    }
+
+    openOneCompanyPage(){
+        return super.open("/company/617a183fb95fa7cfcbf1b82e");
+    }
 }
 
 module.exports = new OneCompanyPage();

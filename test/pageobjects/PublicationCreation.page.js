@@ -1,55 +1,31 @@
 const Page = require ("./Page");
-const chai = require('chai');
+//const chai = require('chai');
 
 class PublicationsCreationPage extends Page {
 
-    get inputPostTittle(){
-        return $('#title')
-    }
+    get inputPostTittle(){return $('#title')}
 
-    get inputLinkImage(){
-        return $('#image')
-    }
+    get inputLinkImage(){return $('#image')}
 
-    get inputDescription(){
-        return $('#description')
-    }
+    get inputDescription(){return $('#description')}
 
-    get inputContent(){
-        return $('//textarea[@autocomplete=\'off\']')
-    }
+    get inputContent(){return $('//textarea[@autocomplete=\'off\']')}
 
-    get btnSavePost(){
-        return $('button[type=\'submit\']')
-    }
+    get btnSavePost(){return $('button[type=\'submit\']')}
 
-    get first_btnLike(){
-        return $('(//button[@id=\'like-btn\'])[1]')
-    }
+    get titlePlaceholder(){return $('#title-label')}
 
-    get first_btnComment(){
-        return $('(//button[@id=\'comment-btn\'])[1]')
-    }
+    get imagePlaceholder(){return $('#image-label')}
 
-    get btnLoadMore(){
-        return $('//div[@class=\'btn-link\']')
-    }
+    get DescriptionPlaceholder(){return $('#description-label')}
 
-    get titlePlaceholder(){
-        return $('#title-label')
-    }
+    get ContentPlaceholder(){return $('//label[text()=\'Content\']')}
 
-    get imagePlaceholder(){
-        return $('#image-label')
-    }
+    get warningLimitCharacters(){return $('//div[@class=\'MuiAlert-message css-1w0ym84\']')}
 
-    get DescriptionPlaceholder(){
-        return $('#description-label')
-    }
+    get arrowBack(){return $('//*[name()=\'path\' and contains(@d,\'M20 11H7.8\')]')}
 
-    get ContentPlaceholder(){
-        return $('//label[text()=\'Content\']')
-    }
+
 
 
     async fillPost (title,imageLink, description, content) {

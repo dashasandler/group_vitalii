@@ -1,7 +1,7 @@
 const LoginPage = require("../pageobjects/Login.page");
 const PublicationPage = require('../pageobjects/Publications.page');
 const LoginData = require('../data/login.data');
-const { clearInput } = require('../helpers/commonMethods/methods')
+const { clearInput } = require('../helpers/uiMethods')
 
 
 describe("Login page", () => {

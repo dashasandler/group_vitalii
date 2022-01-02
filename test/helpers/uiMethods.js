@@ -1,4 +1,3 @@
-
 async function clearInput(element) {
     while (await element.getValue() !== '') {
         await element.doubleClick();

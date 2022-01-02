@@ -1,7 +1,7 @@
 const LoginPage = require('../pageobjects/Login.page');
 const ProfilePage = require('../pageobjects/Profile.page');
 const GlobalNavigationPage = require("../pageobjects/GlobalNavigation.page");
-const { clearInput, getInitials } = require("../../test/helpers/commonMethods/methods");
+const { getInitials } = require("../helpers/uiMethods");
 const ProfileEditPage = require("../pageobjects/ProfileEdit.page");
 const LoginData = require('../data/login.data');
 

@@ -57,8 +57,12 @@ class CompaniesPage extends Page {
         return newString;
     }
 
-    getBoolean(numOfRes, number){
-        return (numOfRes <= number) ? true : false;
+    getBooleanNoMoreThan9(numOfRes, number){
+        return (numOfRes <= number & numOfRes !== 0) ? true : false;
+    }
+
+    getBooleanNoMoreThan18(numOfRes, number){
+        return (numOfRes <= number & numOfRes !== 0) ? true : false;
     }
 
 }

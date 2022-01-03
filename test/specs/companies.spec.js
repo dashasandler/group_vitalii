@@ -3,6 +3,8 @@ const PublicationsPage = require("../pageobjects/Publications.page");
 const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 const CompaniesPage = require('../pageobjects/Companies.page');
 const LoginData = require('../data/login.data');
+const constants = require("constants");
+const anyCompanyCardXPath = '//div[@class = "MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82"]';
 
 describe("CompaniesPage", () => {
 
@@ -27,37 +29,37 @@ describe("CompaniesPage", () => {
          await expect (await (CompaniesPage.imageFirstCompany).isClickable()).toEqual(true);
      });
 
-     it("Verify that a company name is clickable", async () => {
+     it("CP-4: Verify that a company name is clickable", async () => {
          await expect(await (CompaniesPage.nameFirstCompany).isClickable()).toEqual(true);
      });
-      it("Verify that there are no more than 9 company cards on a newly loaded screen", async () => {
-          const res = await browser.findElements("xpath","//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']");
-          const numOfRes = Object.keys(res).length;
-          await CompaniesPage.getBoolean(numOfRes,9);
 
-          await expect(await CompaniesPage.getBoolean()).toEqual(true);
+      it("CP-5: Verify that there are no more than 9 company cards on a newly loaded screen", async () => {
+          const res = await browser.findElements("xpath", anyCompanyCardXPath);
+          const numOfRes1 = Object.keys(res).length;
+
+          await expect(CompaniesPage.getBooleanNoMoreThan9(numOfRes1,9)).toEqual(true);
       })
 
-    it("CP-3: Load More button downloaded more companies' card", async () =>{
-        const elem = CompaniesPage.loadMoreBtn;
-
-        await elem.scrollIntoView();
+    it("CP-6: Load More button downloaded more companies' card", async () => {
+        const res1 = await browser.findElements("xpath", anyCompanyCardXPath);
+        const numOfRes1 = Object.keys(res1).length;
+        await CompaniesPage.loadMoreBtn.scrollIntoView();
         await CompaniesPage.loadMoreBtn.click();
         await new Promise(resolve => setTimeout(resolve, 5000));
-        const res2 = await browser.findElements("xpath","//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']");
+        const res2 = await browser.findElements("xpath", anyCompanyCardXPath);
         const numOfRes2 = Object.keys(res2).length;
-        function getBoolean2(){
-            return (numOfRes2 === 18) ? true : false;
-        };
+        console.log(numOfRes1, numOfRes2 +"++++++++++++++++++++++++++++++++++++++++++++")
+        await expect(numOfRes1 < numOfRes2).toEqual(true);
+    });
 
-        await expect(await getBoolean2(numOfRes2)).toEqual(true);
+    it("CP-7: No more than 9 new cards were downloaded", async () => {
+          const res3 =  await browser.findElements("xpath", anyCompanyCardXPath);
+          const numOfRes3 = Object.keys(res3).length;
+        await expect(CompaniesPage.getBooleanNoMoreThan18(numOfRes3, 18)).toEqual(true);
     })
-
     it("Click On 1st Company Tile", async () => {
         await CompaniesPage.firstCompanyCard.scrollIntoView();
         await CompaniesPage.firstCompanyCard.click();
     });
-
-
 
 })

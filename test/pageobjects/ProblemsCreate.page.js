@@ -26,7 +26,9 @@ class ProblemsCreatePage extends Page {
         return $('//button[text()="Save"]');
     }
 
-    // TODO: Write selector for "Back Button" (btnBack())
+    get btnBack() {
+        return $("//div[@class=\'btn btn-link\']//*[name()=\'svg\']");
+    }
 
     async createProblem (title, company, position, content) {
         await this.open();

@@ -57,6 +57,10 @@ class CompaniesPage extends Page {
         return newString;
     }
 
+    getBoolean(numOfRes, number){
+        return (numOfRes <= number) ? true : false;
+    }
+
 }
 
 module.exports = new CompaniesPage();

@@ -31,11 +31,26 @@ describe("CompaniesPage", () => {
          await expect(await (CompaniesPage.nameFirstCompany).isClickable()).toEqual(true);
      });
       it("Verify that there are no more than 9 company cards on a newly loaded screen", async () => {
-          //???????????????????????????????????????????????????????????????????????????????????
+          const res = await browser.findElements("xpath","//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']");
+          const numOfRes = Object.keys(res).length;
+          await CompaniesPage.getBoolean(numOfRes,9);
+
+          await expect(await CompaniesPage.getBoolean()).toEqual(true);
       })
 
     it("CP-3: Load More button downloaded more companies' card", async () =>{
+        const elem = CompaniesPage.loadMoreBtn;
+
+        await elem.scrollIntoView();
         await CompaniesPage.loadMoreBtn.click();
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        const res2 = await browser.findElements("xpath","//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']");
+        const numOfRes2 = Object.keys(res2).length;
+        function getBoolean2(){
+            return (numOfRes2 === 18) ? true : false;
+        };
+
+        await expect(await getBoolean2(numOfRes2)).toEqual(true);
     })
 
     it("Click On 1st Company Tile", async () => {

@@ -7,15 +7,16 @@ const CompaniesPage = require("../pageobjects/Companies.page");
 const ProfilePage = require("../pageobjects/Profile.page");
 const {userCredentials} = require("../data/login.data");
 const ProblemsPage = require("../pageobjects/Problems.page");
+const PublicProfilePage = require("../pageobjects/PublicProfile.page");
 
 describe("TC1 - People page", () => {
 
-    before(() => {
-        browser.maximizeWindow();
+    before( async () => {
+       await browser.maximizeWindow();
+       await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
     });
 
     it("PP-1: Verify if it is the People page", async () => {
-        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
         await globalNavigationPage.clickMenu();
         await globalNavigationPage.clickPeople();
 
@@ -74,7 +75,6 @@ describe("TC1 - People page", () => {
     it("PP-10: Verify that MenuButton navigation works from the PeoplePage: to Logout", async () => {
         await globalNavigationPage.clickMenu();
         await globalNavigationPage.clickLogOut();
-
         await expect(await LoginPage.titleOfInputEmailBox.getText()).toEqual("Email *");
         await expect(await LoginPage.titleOfInputPasswordBox.getText()).toEqual("Password *");
         await expect(await LoginPage.btnLogin.getText()).toEqual("LOGIN");
@@ -83,8 +83,11 @@ describe("TC1 - People page", () => {
     it("PP-11: Verify that the user again can be logged in and gotten back to the People page", async () => {
         await LoginPage.login(LoginData.userCredentials.email,LoginData.userCredentials.password);
         await PeoplePage.getToPeoplePage();
-
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
-
+    it("PP-12: Verify that user is redirected to profile page", async () => {
+        await PeoplePage.firstUserLink.click();
+        await expect( await PublicProfilePage.publicProfileTitle.getText()).toEqual("users");
+    })
 });
+

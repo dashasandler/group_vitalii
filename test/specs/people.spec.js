@@ -7,15 +7,16 @@ const CompaniesPage = require("../pageobjects/Companies.page");
 const ProfilePage = require("../pageobjects/Profile.page");
 const {userCredentials} = require("../data/login.data");
 const ProblemsPage = require("../pageobjects/Problems.page");
+const PublicProfilePage = require("../pageobjects/PublicProfile.page");
 
 describe("TC1 - People page", () => {
 
-    before(() => {
-        browser.maximizeWindow();
+    before( async () => {
+       await browser.maximizeWindow();
+       await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
     });
 
     it("PP-1: Verify if it is the People page", async () => {
-        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
         await globalNavigationPage.clickMenu();
         await globalNavigationPage.clickPeople();
 
@@ -86,5 +87,10 @@ describe("TC1 - People page", () => {
 
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
+    it("PP-12: Verify that user is redirected to profile page", async () => {
+        await PeoplePage.firstUserLink.click();
+        await expect( await PublicProfilePage.publicProfileTitle.getText()).toEqual("users");
+    })
 
 });
+

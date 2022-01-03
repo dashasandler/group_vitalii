@@ -44,6 +44,7 @@ describe("TC1 - People page", () => {
 
     it("PP-5: Verify that user can get back from the Companies page to the People page", async () => {
         await PeoplePage.getToPeoplePage();
+
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
 
@@ -56,6 +57,7 @@ describe("TC1 - People page", () => {
 
     it("PP-7: Verify that user can get back from the Problems page to the People page", async () => {
         await PeoplePage.getToPeoplePage();
+
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
 
@@ -75,6 +77,7 @@ describe("TC1 - People page", () => {
     it("PP-10: Verify that MenuButton navigation works from the PeoplePage: to Logout", async () => {
         await globalNavigationPage.clickMenu();
         await globalNavigationPage.clickLogOut();
+
         await expect(await LoginPage.titleOfInputEmailBox.getText()).toEqual("Email *");
         await expect(await LoginPage.titleOfInputPasswordBox.getText()).toEqual("Password *");
         await expect(await LoginPage.btnLogin.getText()).toEqual("LOGIN");
@@ -83,10 +86,13 @@ describe("TC1 - People page", () => {
     it("PP-11: Verify that the user again can be logged in and gotten back to the People page", async () => {
         await LoginPage.login(LoginData.userCredentials.email,LoginData.userCredentials.password);
         await PeoplePage.getToPeoplePage();
+
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
-    it("PP-12: Verify that user is redirected to profile page", async () => {
+
+    it("PP-12: Verify that user is redirected to any user public profile page", async () => {
         await PeoplePage.firstUserLink.click();
+
         await expect( await PublicProfilePage.publicProfileTitle.getText()).toEqual("users");
     })
 });

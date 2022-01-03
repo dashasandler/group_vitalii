@@ -40,7 +40,7 @@ describe("CompaniesPage", () => {
           await expect(CompaniesPage.getBooleanNoMoreThan9(numOfRes1,9)).toEqual(true);
       })
 
-    it("CP-6: Load More button downloaded more companies' card", async () => {
+    it("CP-6: By clicking the Load More button more companies' cards were downloaded", async () => {
         const res1 = await browser.findElements("xpath", anyCompanyCardXPath);
         const numOfRes1 = Object.keys(res1).length;
         await CompaniesPage.loadMoreBtn.scrollIntoView();
@@ -48,13 +48,14 @@ describe("CompaniesPage", () => {
         await new Promise(resolve => setTimeout(resolve, 5000));
         const res2 = await browser.findElements("xpath", anyCompanyCardXPath);
         const numOfRes2 = Object.keys(res2).length;
-        console.log(numOfRes1, numOfRes2 +"++++++++++++++++++++++++++++++++++++++++++++")
+
         await expect(numOfRes1 < numOfRes2).toEqual(true);
     });
 
     it("CP-7: No more than 9 new cards were downloaded", async () => {
-          const res3 =  await browser.findElements("xpath", anyCompanyCardXPath);
-          const numOfRes3 = Object.keys(res3).length;
+        const res3 =  await browser.findElements("xpath", anyCompanyCardXPath);
+        const numOfRes3 = Object.keys(res3).length;
+
         await expect(CompaniesPage.getBooleanNoMoreThan18(numOfRes3, 18)).toEqual(true);
     })
     it("Click On 1st Company Tile", async () => {

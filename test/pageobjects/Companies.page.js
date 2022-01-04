@@ -2,7 +2,7 @@ const Page = require('./Page');
 
 class CompaniesPage extends Page {
 
-    get companiesPageTitle () {
+    get companiesPageTitle() {
         return $('//h6[text()="companies"]');
     }
 
@@ -30,6 +30,10 @@ class CompaniesPage extends Page {
         return $('//div[text()="Load more..."]');
     }
 
+    get anyCompanyCard() {
+        return $("//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']")
+    };
+
     async openCompany() {
         await this.openCompaniesPage();
         await this.firstCompanyCard.click()
@@ -51,6 +55,14 @@ class CompaniesPage extends Page {
             } else break;
         }
         return newString;
+    }
+
+    getBooleanNoMoreThan9(numOfRes, number){
+        return (numOfRes <= number & numOfRes !== 0) ? true : false;
+    }
+
+    getBooleanNoMoreThan18(numOfRes, number){
+        return (numOfRes <= number & numOfRes !== 0) ? true : false;
     }
 
 }

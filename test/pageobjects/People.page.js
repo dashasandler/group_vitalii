@@ -15,7 +15,18 @@ class PeoplePage extends Page {
         return $('//button[text()="Invite"]');
     }
     get firstUserLink(){
-        return $('//div[@class=\'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 user-list css-aoeo82\']/div[1]');
+        return $('//div[@class = "ml-2 user-text"]');
+    }
+    get firstUserTitle(){
+        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[1]/b');
+    }
+
+    get firstUserJobTitle() {
+        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[2]');
+    }
+
+    get firstUserImage() {
+        return $('')
     }
 
     getToPeoplePage(){

@@ -27,21 +27,9 @@ class PeoplePage extends Page {
     }
 
     get firstUserImage() {
-        return $('')
+        // return $('//*[@id="root"]/*/*/*[1]/*/a');
+        return $('//div[@id="root"]/div/div/div[1]/div/a');
     }
-
-    get firstUserTitle(){
-        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[1]/b');
-    }
-
-    get firstUserJobTitle() {
-        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[2]');
-    }
-
-    get firstUserImage() {
-        return $('//*[@id="root"]/*/*/*[1]/*/a')
-    }
-
 
     getToPeoplePage(){
         globalNavigationPage.clickMenu();

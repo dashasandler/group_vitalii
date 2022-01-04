@@ -20,6 +20,10 @@ const Page = require ("./Page");
 
         get btnLoadMore(){return $('//div[@class=\'btn-link\']')}
 
+        get btnLike(){return $('#like-btn')}
+
+        get mlCountLike(){return '//div[2]//div[2]//div[2]//button[1]//span[1]'}
+
         findPublication(title) {
             return this.publicationsList.find(async (publication) =>
                 await publication.$("div>a[href*='/publication/']").getText() === title);

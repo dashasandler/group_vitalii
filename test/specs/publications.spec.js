@@ -66,6 +66,12 @@ describe('Positive testing', () => {
         await PublicationsPage.btnComment.click();
         await PublicationsPage.createComments();
     });
+
+    it.only("Verify the like is created", async () => {
+    //    await PublicationsPage.open();
+        await PublicationsPage.btnLike.click();
+        await expect(PublicationsPage.mlCountLike).toBeExisting();
+    })
 });
 
 

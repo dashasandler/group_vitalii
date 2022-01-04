@@ -26,6 +26,32 @@ async function getActivationLinkByCreatingUser(email, password) {
     } else {
         const activationLinkId = data.data.userCreate;
         return { activationLinkId };
+
+        // return myData;
+    }
+}
+
+async function getActivationDataByCreatingUser(email, password) {
+    const reqData = JSON.stringify({
+        query: `mutation userCreate ($email: String!, $password: String!) {
+    userCreate (email: $email, password: $password)
+}`,
+        variables: {"email": email, "password": password}
+    });
+
+    const userData = await axios({
+        method: 'post',
+        url: API_URL,
+        data: reqData,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (userData.data.errors) {
+        return {errors: userData.data.errors}
+    } else {
+        return userData;
     }
 }
 
@@ -36,6 +62,7 @@ async function registerActivationLink(activationLinkId) {
 }`,
         variables: { activationLinkId }
     });
+
     const {data} = await axios({
         method: 'post',
         url: API_URL,
@@ -145,6 +172,7 @@ async function registerActivationLink(activationLinkId) {
 module.exports = {
     getActivationLinkByCreatingUser,
     registerActivationLink,
+    getActivationDataByCreatingUser,
     // userLogin,
     // createCompany
 }

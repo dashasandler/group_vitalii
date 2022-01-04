@@ -3,7 +3,6 @@ const PublicationsPage = require("../pageobjects/Publications.page");
 const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 const CompaniesPage = require('../pageobjects/Companies.page');
 const LoginData = require('../data/login.data');
-const constants = require("constants");
 const anyCompanyCardXPath = '//div[@class = "MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82"]';
 
 describe("CompaniesPage", () => {

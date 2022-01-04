@@ -18,6 +18,17 @@ class PeoplePage extends Page {
     get firstUserLink(){
         return $('//div[@class = "ml-2 user-text"]');
     }
+    get firstUserTitle(){
+        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[1]/b');
+    }
+
+    get firstUserJobTitle() {
+        return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[2]');
+    }
+
+    get firstUserImage() {
+        return $('')
+    }
 
     get firstUserTitle(){
         return $('//div[@id="root"]/div/div/div[1]/div/div/a/div[1]/b');

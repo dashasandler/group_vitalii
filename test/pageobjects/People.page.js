@@ -27,7 +27,6 @@ class PeoplePage extends Page {
     }
 
     get firstUserImage() {
-        // return $('//*[@id="root"]/*/*/*[1]/*/a');
         return $('//div[@id="root"]/div/div/div[1]/div/a');
     }
 

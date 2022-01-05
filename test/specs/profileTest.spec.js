@@ -1,20 +1,19 @@
 const LoginPage = require('../pageobjects/Login.page');
 const ProfilePage = require('../pageobjects/Profile.page');
-const GlobalNavigationPage = require("../pageobjects/GlobalNavigation.page");
-const { getInitials } = require("../helpers/uiMethods");
-const ProfileEditPage = require("../pageobjects/ProfileEdit.page");
+const GlobalNavigation = require("../pageobjects/GlobalNavigation.page");
+const { getInitials} = require("../helpers/uiMethods");
 const LoginData = require('../data/login.data');
 
 describe("Profile", () => {
 
     before(async () => {
         await browser.maximizeWindow();
+        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
+        await GlobalNavigation.btnMenu.click();
+        await GlobalNavigation.profileOption.click();
     })
 
     it('Should redirect on Profile Page', async () => {
-        await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
-        await GlobalNavigationPage.btnMenu.click();
-        await GlobalNavigationPage.profileOption.click();
         const titleText = await ProfilePage.title.getText();
         await expect(titleText).toEqual("user");
     });
@@ -26,3 +25,4 @@ describe("Profile", () => {
         await expect(nameInit).toEqual(imageInit);
     });
 });
+

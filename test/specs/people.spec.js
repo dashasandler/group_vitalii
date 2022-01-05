@@ -90,25 +90,30 @@ describe("TC1 - People page", () => {
         await expect(await PeoplePage.usersTitle.getText()).toEqual("users");
     });
 
-    it("PP-12: Verified that user image is clickable", async () =>{+
+    it("PP-12: Verified that user image is clickable", async () =>{
+        await browser.pause(3000);
+
         await expect(await PeoplePage.firstUserImage.isClickable()).toEqual(true);
     });
 
     it("PP-13: Verified that user name/title is clickable", async () =>{
+        await browser.pause(3000);
+        const abc = await browser.$(PeoplePage.firstUserTitle);
+        const def = await abc.isClickable();
 
-        await expect(await PeoplePage.firstUserTitle.isClickable()).toEqual(true);
+        await expect(def).toEqual(true);
     });
 
     it("PP-14: Verified that user job title is clickable", async () =>{
+        await browser.pause(3000);
 
-        await expect(await PeoplePage.firstUserJobTitle.isClickable()).toEqual(true);
+        await expect(await (browser.$(PeoplePage.firstUserJobTitle).isClickable())).toEqual(true);
     });
 
     it("PP-15: Verify that user is redirected to any user public profile page", async () => {
-        await PeoplePage.firstUserImage.click();
+        await PeoplePage.firstUserLink.click();
 
         await expect( await PublicProfilePage.publicProfileTitle.getText()).toEqual("users");
     })
 
 });
-

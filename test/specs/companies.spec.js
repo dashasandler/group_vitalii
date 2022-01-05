@@ -2,7 +2,7 @@ const LoginPage = require("../pageobjects/Login.page");
 const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 const CompaniesPage = require('../pageobjects/Companies.page');
 const LoginData = require('../data/login.data');
-const anyCompanyCardXPath = "//div[@id='root']/div/div/div/p"
+// const anyCompanyCardXPath = "//div[@id='root']/div/div/div/p"
 
 describe("CompaniesPage", () => {
 
@@ -32,26 +32,27 @@ describe("CompaniesPage", () => {
      });
 
       it("CP-5: Verify that there are no more than 9 company cards on a newly loaded screen", async () => {
-          const res = await browser.$(CompaniesPage.anyCompanyCardXPath);
-          const numOfRes = Object.keys(res).length;
+          const res = await browser.$$(CompaniesPage.anyCompanyCardXPath);
+          const numOfRes = res.length;
 
           await expect(CompaniesPage.getBooleanNoMoreThan9(numOfRes,9)).toEqual(true);
       })
 
     it("CP-6: By clicking the Load More button more companies' cards were downloaded", async () => {
-        // const res1 = await browser.$(CompaniesPage.anyCompanyCardXPath);
-        // const numOfRes1 = Object.keys(res1).length;
-        await (CompaniesPage.loadMoreBtn).scrollIntoView();
-        await (CompaniesPage.loadMoreBtn).click();
-        const res2 = await browser.$(CompaniesPage.anyCompanyCardXPath);
-        const numOfRes2 = Object.keys(res2).length;
+        const res1 = await browser.$$(CompaniesPage.anyCompanyCardXPath);
+        const numOfRes1 = res1.length;
+        await CompaniesPage.loadMoreBtn.scrollIntoView();
+        await CompaniesPage.loadMoreBtn.click();
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        const res2 = await browser.$$(CompaniesPage.anyCompanyCardXPath);
+        const numOfRes2 = res2.length;
 
         await expect(numOfRes1 < numOfRes2).toEqual(true);
     });
 
     it("CP-7: No more than 9 new cards were downloaded", async () => {
-        const res3 =  await browser.$(CompaniesPage.anyCompanyCardXPath);
-        const numOfRes3 = Object.keys(res3).length;
+        const res3 =  await browser.$$(CompaniesPage.anyCompanyCardXPath);
+        const numOfRes3 = res3.length;
 
         await expect(CompaniesPage.getBooleanNoMoreThan18(numOfRes3, 18)).toEqual(true);
     })

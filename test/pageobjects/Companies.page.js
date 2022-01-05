@@ -31,8 +31,10 @@ class CompaniesPage extends Page {
     }
 
     get anyCompanyCard() {
-        return $("//div[@class = 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 company-card m-3 d-flex flex-column css-aoeo82']")
+        return $("//div[@id=\"root\"]/div/div/div/p'")
     };
+
+    anyCompanyCardXPath = "//div[@id='root']/div/div/div/p";
 
     async openCompany() {
         await this.openCompaniesPage();

@@ -28,7 +28,6 @@ describe("Profile", () => {
 
     it('Button back should redirect on Publication Page ', async () => {
         await ProfilePage.btnBack.click();
-        await browser.pause(2000);
         const addPublication = Publications.btnAddPost;
         await expect(addPublication).toHaveText('ADD PUBLICATION');
     });

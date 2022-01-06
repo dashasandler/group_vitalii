@@ -67,11 +67,13 @@ describe('Positive testing', () => {
         await PublicationsPage.createComments();
     });
 
-    it.only("Verify the like is created", async () => {
-    //    await PublicationsPage.open();
+    it ("Verify the like is created", async () => {
+        let beforeLike = await PublicationsPage.mlCountLike.getText();
         await PublicationsPage.btnLike.click();
-        await expect(PublicationsPage.mlCountLike).toBeExisting();
-    })
+        await browser.pause(2000);
+        let afterLike = await PublicationsPage.mlCountLike.getText();
+        await expect(beforeLike !== afterLike).toEqual(true);
+    });
 });
 
 

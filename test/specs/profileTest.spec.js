@@ -3,6 +3,7 @@ const ProfilePage = require('../pageobjects/Profile.page');
 const GlobalNavigation = require("../pageobjects/GlobalNavigation.page");
 const { getInitials} = require("../helpers/uiMethods");
 const LoginData = require('../data/login.data');
+const Publications = require('../pageobjects/Publications.page');
 
 describe("Profile", () => {
 
@@ -23,6 +24,12 @@ describe("Profile", () => {
         const nameInit = getInitials(fullName);
         const imageInit = ProfilePage.profileImageInitials.getText();
         await expect(nameInit).toEqual(imageInit);
+    });
+
+    it('Button back should redirect on Publication Page ', async () => {
+        await ProfilePage.btnBack.click();
+        const addPublication = Publications.btnAddPost;
+        await expect(addPublication).toHaveText('ADD PUBLICATION');
     });
 });
 

@@ -30,9 +30,6 @@ describe("Profile", () => {
         await ProfilePage.btnBack.click();
         await browser.pause(2000);
         const addPublication = Publications.btnAddPost;
-        console.log("+++++++++++++++++++++++++++++++++++++++++");
-        console.log(addPublication);
-        console.log("+++++++++++++++++++++++++++++++++++++++++");
         await expect(addPublication).toHaveText('ADD PUBLICATION');
     });
 });

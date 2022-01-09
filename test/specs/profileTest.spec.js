@@ -19,6 +19,11 @@ describe("Profile", () => {
         await expect(titleText).toEqual("user");
     });
 
+    it("Verify the user login under correct email", async () => {
+        const emailText = await ProfilePage.checkEmail.getText();
+        await expect(emailText).toEqual("Email: " + LoginData.userCredentials.email);
+    });
+
     it("ImageLetter should match FullName", async () => {
         const fullName = ProfilePage.profileName.getText();
         const nameInit = getInitials(fullName);

@@ -14,10 +14,16 @@ describe("Profile", () => {
         await GlobalNavigation.profileOption.click();
     })
 
+    it("Verify the user login under correct email", async () => {
+        const emailText = await ProfilePage.checkEmail.getText();
+        await expect(emailText).toEqual("Email: " + LoginData.userCredentials.email);
+    });
+
     it('Should redirect on Profile Page', async () => {
         const titleText = await ProfilePage.title.getText();
         await expect(titleText).toEqual("user");
     });
+
 
     it("ImageLetter should match FullName", async () => {
         const fullName = ProfilePage.profileName.getText();

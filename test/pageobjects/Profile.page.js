@@ -30,7 +30,6 @@ class ProfilePage extends Page {
         return $("//div[20]");
     }
 
-
     open() {
         return super.open('/profile');
     }

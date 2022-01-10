@@ -13,4 +13,9 @@ async  function getInitials(name){
     }
 }
 
+async function getElements (elem) {
+    const res = await browser.findElements("xpath", `${elem}`);
+    return res;
+}
+
 module.exports = { clearInput, getInitials };

@@ -2,23 +2,49 @@ const Page = require ("./Page");
 
     class PublicationsPage extends Page {
 
-        get publicationsTitle() {return $("//h6[text()='publications']")}
+        get publicationsTitle() {
+            return $("//h6[text()='publications']");
+        }
 
-        get btnAddPost(){return $('//button[text()=\'Add Publication\']')}
+        get btnAddPost(){
+            return $('//button[text()=\'Add Publication\']');
+        }
 
-        get first_btnLike(){return $('(//button[@id=\'like-btn\'])[1]')}
+        get first_btnLike(){
+            return $('(//button[@id=\'like-btn\'])[1]');
+        }
 
-        get btnComment(){return $('#comment-btn')}
+        get btnComment(){
+            return $('#comment-btn');
+        }
 
-        get inputComment(){return $('#comment-input')}
+        get inputComment(){
+            return $('#comment-input');
+        }
 
-        get sendComment(){return $('#send-btn')}
+        get sendComment(){
+            return $('#send-btn');
+        }
 
-        get publications (){return $('div.pb-4>div:nth-child(2)>div>a>div')}
+        get publications (){
+            return $('div.pb-4>div:nth-child(2)>div>a>div');
+        }
 
-        get comments (){return $('div[class=\'bg-light p-2\'] div:nth-child(2)')}
+        get comments (){
+            return $('div[class=\'bg-light p-2\'] div:nth-child(2)');
+        }
 
-        get btnLoadMore(){return $('//div[@class=\'btn-link\']')}
+        get btnLoadMore(){
+            return $('//div[@class=\'btn-link\']');
+        }
+
+        get btnLike(){
+            return $('#like-btn');
+        }
+
+        get mlCountLike() {
+            return $('(//span[@class="ml-1"])[1]');
+        }
 
         findPublication(title) {
             return this.publicationsList.find(async (publication) =>

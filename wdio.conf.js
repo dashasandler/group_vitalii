@@ -1,4 +1,4 @@
-const url = "https://enduring.herokuapp.com";
+const url = "https://enduring.netlify.app/";
 exports.config = {
     //
     // ====================

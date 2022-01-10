@@ -31,7 +31,7 @@ class CompaniesPage extends Page {
     }
 
     get anyCompanyCard() {
-        return $("//div[@id=\"root\"]/div/div/div/p'")
+        return $("//div[@id=\"root\"]/div/div/div/p");
     };
 
     anyCompanyCardXPath = "//div[@id='root']/div/div/div/p";

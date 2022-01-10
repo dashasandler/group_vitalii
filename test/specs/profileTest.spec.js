@@ -24,7 +24,6 @@ describe("Profile", () => {
         await expect(titleText).toEqual("user");
     });
 
-
     it("ImageLetter should match FullName", async () => {
         const fullName = ProfilePage.profileName.getText();
         const nameInit = getInitials(fullName);

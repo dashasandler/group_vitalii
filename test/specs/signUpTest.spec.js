@@ -1,5 +1,7 @@
 const SignUpPage = require('../pageobjects/SignUp.page');
 const LoginData = require('../data/login.data');
+const LoginPage = require('../pageobjects/Login.page');
+
 
 describe('Login functionality', () => {
 
@@ -12,5 +14,12 @@ describe('Login functionality', () => {
         await SignUpPage.btnSignUp.click();
         const alertMsg = `User with ${LoginData.userCredentials.email} already exist`
         await expect(SignUpPage.alert).toHaveText(alertMsg);
+    });
+
+    it("Should redirect the user from SignUp Page to Login Page and backwards", async () => {
+        await SignUpPage.loginLink.click()
+        await expect(LoginPage.loginTitle).toHaveText("Login");
+        await LoginPage.hrefSignup.click();
+        await expect(SignUpPage.signUpTitle).toHaveText("Sign Up");
     });
 });

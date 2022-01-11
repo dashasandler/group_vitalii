@@ -18,4 +18,4 @@ async function getElements (elem) {
     return res;
 }
 
-module.exports = { clearInput, getInitials };
+module.exports = { clearInput, getInitials, getElements };

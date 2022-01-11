@@ -150,7 +150,7 @@ describe("CompaniesPage", () => {
 
     it("CP-19: Verify that companies cards are shown by ascendant order by name", async () => {
 
-        const arrOfElements = await uiMethods.countElements(CompaniesPage.anyCompanyCardXPath);
+        const arrOfElements = await uiMethods.getElements(CompaniesPage.anyCompanyCardXPath);
         console.log(arrOfElements.length);
         const arrOfNames = [];
         for(let i = 1; i <= arrOfElements.length; i++){

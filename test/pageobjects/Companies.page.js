@@ -1,4 +1,5 @@
 const Page = require('./Page');
+const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 
 class CompaniesPage extends Page {
 
@@ -65,6 +66,11 @@ class CompaniesPage extends Page {
 
     getBooleanNoMoreThan18(numOfRes, number){
         return (numOfRes <= number & numOfRes !== 0) ? true : false;
+    }
+
+    getToCompaniesPage(){
+        globalNavigationPage.clickMenu();
+        globalNavigationPage.clickCompanies();
     }
 
 }

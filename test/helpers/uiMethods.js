@@ -13,4 +13,9 @@ async  function getInitials(name){
     }
 }
 
-module.exports = { clearInput, getInitials };
+async function countElements (elem) {
+    const res = await browser.findElements("xpath", `${elem}`);
+    return res;
+}
+
+module.exports = { clearInput, getInitials, countElements};

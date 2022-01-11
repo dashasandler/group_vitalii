@@ -6,6 +6,10 @@ class SignUpPage extends Page {
         return $("#email");
     }
 
+    get emailValidationError() {
+        return $("#email-helper-text");
+    }
+
     get inputPassword() {
         return $("#password");
     }

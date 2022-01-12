@@ -2,6 +2,16 @@ const SignUpPage = require('../pageobjects/SignUp.page');
 const LoginData = require('../data/login.data');
 const LoginPage = require('../pageobjects/Login.page');
 
+const invalidEmails = [
+    "mysite.ourearth.com",
+    "mysite@.com.my",
+    "@you.me.net",
+    "mysite123@gmail.b",
+    "mysite@.org.org",
+    ".mysite@mysite.org",
+    "mysite()*@gmail.com",
+    "mysite..1234@yahoo.com"
+];
 
 describe('Login functionality', () => {
 
@@ -21,5 +31,13 @@ describe('Login functionality', () => {
         await expect(LoginPage.loginTitle).toHaveText("Login");
         await LoginPage.hrefSignup.click();
         await expect(SignUpPage.signUpTitle).toHaveText("Sign Up");
+
+    it("Shouldn`t be able to sign up with incorrect email", async () => {
+        for(let email of invalidEmails) {
+            await SignUpPage.inputEmail.setValue(email);
+            await SignUpPage.btnSignUp.click();
+            const alertMsg = "Email validation error";
+            await expect(SignUpPage.emailValidationError).toHaveText(alertMsg);
+        }
     });
 });

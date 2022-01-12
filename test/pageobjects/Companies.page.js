@@ -1,4 +1,5 @@
 const Page = require('./Page');
+const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 
 class CompaniesPage extends Page {
 
@@ -31,7 +32,7 @@ class CompaniesPage extends Page {
     }
 
     get anyCompanyCard() {
-        return $("//div[@id=\"root\"]/div/div/div/p'")
+        return $("//div[@id=\"root\"]/div/div/div/p");
     };
 
     anyCompanyCardXPath = "//div[@id='root']/div/div/div/p";
@@ -65,6 +66,11 @@ class CompaniesPage extends Page {
 
     getBooleanNoMoreThan18(numOfRes, number){
         return (numOfRes <= number & numOfRes !== 0) ? true : false;
+    }
+
+    getToCompaniesPage(){
+        globalNavigationPage.clickMenu();
+        globalNavigationPage.clickCompanies();
     }
 
 }

@@ -2,6 +2,10 @@ const Page = require('./Page');
 
 class SignUpPage extends Page {
 
+    get signUpTitle() {
+        return $("//h3[text()='Sign Up']")
+    }
+
     get inputEmail() {
         return $("#email");
     }
@@ -19,7 +23,7 @@ class SignUpPage extends Page {
     }
 
     get loginLink() {
-        return $("a[href='/fillLoginCredentials']");
+        return $("a[href='/login']");
     }
 
     get alert() {

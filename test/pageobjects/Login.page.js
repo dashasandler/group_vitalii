@@ -1,6 +1,11 @@
 const Page = require('./Page');
 
 class LoginPage extends Page {
+
+    get loginTitle() {
+        return $("//h3[text()='Login']")
+    }
+
     get inputEmail() {
         return $("#email");
     }
@@ -19,6 +24,14 @@ class LoginPage extends Page {
 
     get titleOfInputPasswordBox() {
         return $("//label[@id = 'password-label'] ");
+    }
+
+    get hrefReset() {
+        return $("//a[@href='/passwordReset']");
+    }
+
+    get hrefSignup() {
+        return $("//a[@href='/signup']");
     }
 
     async login(useremail, password) {

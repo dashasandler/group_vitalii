@@ -14,6 +14,23 @@ class ProblemsPage extends Page {
         return $('//button[@aria-label="Show filters"]');
     }
 
+    get filterColumnDropDownMenu() {
+        return $("//label[text()=\"Columns\"]/..//select");
+    }
+
+    get filterOperatorsDropDownMenu() {
+        return $("(//label[text()=\"Operators\"]/..//select)[2]");
+    }
+
+    get filterValue() {
+        return $("//label[text()='Value']/..//input");
+    }
+
+    get filterLoader() {
+        return $("//*[contains(@data-testid,'LoadIcon')]");
+    }
+
+
     get filterDensity() {
         return $('//button[@aria-label="Density"]');
     }
@@ -52,6 +69,11 @@ class ProblemsPage extends Page {
 
     open() {
         return super.open('/problems');
+    }
+
+    problemRowsContainTextInColumn(text, nameOfColumn){
+        return $$(`//*[contains(text(), '${text}') and @data-field='${nameOfColumn}']`);
+
     }
 }
 

@@ -8,7 +8,6 @@ async function getActivationLinkByCreatingUser(email, password) {
         query: `mutation userCreate ($email: String!, $password: String!) {
     userCreate (email: $email, password: $password)
 }`,
-       //variables: {"email": "K4567823456967@yahoo.com", "password": "Mama123**"}
       variables: {"email": email, "password": password}
     });
     const { data } = await axios({
@@ -16,13 +15,10 @@ async function getActivationLinkByCreatingUser(email, password) {
         url: API_URL,
         data: reqData,
         headers: {
-            //'Authorization' : `Bearer $(token)`,
             'Content-Type': 'application/json'
         }
     });
 
-    //console.log(data)
-    //console.log(data.data.errors)
     if (data.errors) {
         return {errors: data.errors}
     } else {
@@ -48,7 +44,6 @@ async function registerActivationLink(activationLinkId) {
         }
     });
 
-    //console.log(data.errors)
     if (data.errors) {
         return {errors: data.errors}
     } else {
@@ -91,7 +86,7 @@ async function userLogin (email, password) {
         }
     }
 }`,
-        variables: {"email":"567890@gmail.com","password":"nhgbjnmk"}
+        variables: {"email":email,"password":password}
     });
 
     const userLogin = await axios({
@@ -102,7 +97,7 @@ async function userLogin (email, password) {
             'Content-Type': 'application/json'
         }
     });
-    //console.log((userLogin.data.errors)[0].message);
+    //console.log((userLogin.data.errors)[0].message); example how to find only message
     if (userLogin.data.errors) {
         const message = (userLogin.data.errors)[0].message;
         return { message };

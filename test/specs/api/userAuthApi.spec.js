@@ -1,20 +1,20 @@
+let activationLink = null;
+let activationData = null;
+let resultOfActivation = null;
+let accessTokenData = null;
+let userID = null;
+let errorMessage = null;
 const {
     getActivationLinkByCreatingUser,
     registerActivationLink,
     getActivationDataByCreatingUser,
     userLogin
-} = require('../../pageobjectAPI/userAuthApi');
+} = require('../../requestsAPI/userAuthApi');
 const Data = require('../../data/login.data');
 const Chai = require('chai');
 const chaiExpect = Chai.expect;
 
-describe('API - user authentication', () => {
-
-    let activationLink = null;
-    let activationData = null;
-    let resultOfActivation = null;
-    let accessTokenData = null;       let userID = null;
-    let errorMessage = null;
+describe('API - user authorization', () => {
 
     // This is a simple assertion with getting activation link directly
     it('The user get activation link ID', async () => {
@@ -22,12 +22,12 @@ describe('API - user authentication', () => {
         expect(!!activationLink.activationLinkId).toBe(true);
     });
 
-    it('#1 method The user Activation Successful!', async () => {
+    it('Variant-#1 The user Activation Successful', async () => {
         resultOfActivation = await registerActivationLink(activationLink.activationLinkId);
         expect(resultOfActivation.activationString).toEqual('Activation Successful!');
     });
 
-    it(' #2 method The user Activation Successful!', async () => {
+    it('Variant-#2 method The user Activation Successful!', async () => {
         activationData = await getActivationDataByCreatingUser(Data.fakeCredentialsUser2.email, Data.fakeCredentialsUser2.password);
         resultOfActivation = await registerActivationLink(activationData.data.data.userCreate);
         expect(resultOfActivation.activationString).toEqual('Activation Successful!');

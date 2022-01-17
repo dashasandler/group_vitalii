@@ -2,101 +2,56 @@ const Page = require('./page');
 
 class ProblemsPage extends Page {
 
-    get newProblem() {
-        return $('//button[text()="New Problem"]');
-    }
+    get newProblem() {return $('//button[text()="New Problem"]');}
 
-    get filterColumns() {
-        return $('//button[@aria-label="Select columns"]');
-    }
+    get filterColumns() {return $('//button[@aria-label="Select columns"]');}
 
-    get filterFilters() {
-        return $('//button[@aria-label="Show filters"]');
-    }
+    get filterFilters() {return $('//button[@aria-label="Show filters"]');}
 
-    get filterColumnDropDownMenu() {
-        return $("//label[text()=\"Columns\"]/..//select");
-    }
+    get filterColumnDropDownMenu() {return $("//label[text()=\"Columns\"]/..//select");}
 
-    get filterOperatorsDropDownMenu() {
-        return $("(//label[text()=\"Operators\"]/..//select)[2]");
-    }
+    get filterOperatorsDropDownMenu() {return $("(//label[text()=\"Operators\"]/..//select)[2]");}
 
-    get filterValue() {
-        return $("//label[text()='Value']/..//input");
-    }
+    get filterValue() {return $("//label[text()='Value']/..//input");}
 
-    get filterLoader() {
-        return $("//*[contains(@data-testid,'LoadIcon')]");
-    }
+    get filterLoader() {return $("//*[contains(@data-testid,'LoadIcon')]");}
 
+    get filterDensity() {return $('//button[@aria-label="Density"]');}
 
-    get filterDensity() {
-        return $('//button[@aria-label="Density"]');
-    }
+    get filterExport() {return $('//button[@aria-label="Export"]');}
 
-    get filterExport() {
-        return $('//button[@aria-label="Export"]');
-    }
+    get columnsFind() {return $('//input[@class="MuiInput-input MuiInputBase-input css-mnn31"]');}
 
-    get columnsFind() {
-        return $('//input[@class="MuiInput-input MuiInputBase-input css-mnn31"]');
-    }
+    get paginationBack() {return $('button[@aria-label="Go to previous page"]');}
 
+    get paginationForward() {return $('button[@aria-label="Go to next page"]');}
 
-    get paginationBack() {
-        return $('button[@aria-label="Go to previous page"]');
-    }
+    get problemsPageTitle() {return $('//h6[text()="problems"]')}
 
-    get paginationForward() {
-        return $('button[@aria-label="Go to next page"]');
-    }
+    get inputTitle() {return $('#title')}
 
-    get problemsPageTitle() {
-        return $('//h6[text()="problems"]')
-    }
+    get dropDownMenuCompany() {return $("//li[@id='company-option-0']")}
 
-    get inputTitle() {
-        return $('#title')
-    }
+    get company() {return $("#company")}
 
-    get dropDownMenuCompany() {
-        return $("//li[@id='company-option-0']")
-    }
+    get dropDownMenu() {return $("//ul[@id='company-listbox']")}
 
-    get company() {
-        return $("#company")
-    }
+    get inputPosition() {return $('#position')}
 
-    get dropDownMenu() {
-        return $("//ul[@id='company-listbox']")
-    }
+    get inputContent() {return $("//textarea[@class='w-md-editor-text-input ']")}
 
-    get inputPosition() {
-        return $('#position')
-    }
+    get btnSave() {return $("//button[@type='submit']")}
 
-    get inputContent() {
-        return $("//textarea[@class='w-md-editor-text-input ']")
-    }
+    get problemsTitle() {return $("//*[contains(@class, 'textLeft') and @data-field='Problem name']")}
 
-    get btnSave() {
-        return $("//button[@type='submit']")
-    }
+    get positionsTitle() {return $("//*[contains(@class, 'textLeft') and @data-field='Position']")}
 
+    get companiesTitle() {return $("//*[contains(@class, 'textLeft') and @data-field='Company']")}
 
-    // async fillTheProblemForm(title, company, position, content){
-    //     await this.inputTitle.setValue(title);
-    //
-    //     await this.inputCompany.
-    //     await this.inputPosition.setValue(position);
-    //     await this.inputContent.setValue(content);
-    //     await this.btnSave.click();
-    // }
+    get creatorsName() {return $("//*[contains(@class, 'textLeft') and @data-field='Creator']")}
 
     problemRowsContainTextInColumn(text, columnName){
-        return $$(`//*[contains(text(), '${text}') and @data-field='${columnName}']`);
-    }
+        return $$(`//*[contains(text(), '${text}') and @data-field='${columnName}']`);}
 
     async selectCompany(company) {
         await this.company.click();
@@ -104,7 +59,13 @@ class ProblemsPage extends Page {
         await option.click();
     }
 
-
+    async fillProblemFormAndClickSave(title, company, position, content){
+        await this.inputTitle.setValue(title);
+        await this.selectCompany(company);
+        await this.inputPosition.setValue(position);
+        await this.inputContent.setValue(content);
+        await this.btnSave.click();
+    }
     open() {
         return super.open('/problems');
     }

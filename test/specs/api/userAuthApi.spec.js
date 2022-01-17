@@ -27,7 +27,7 @@ describe('API - user authorization', () => {
         expect(resultOfActivation.activationString).toEqual('Activation Successful!');
     });
 
-    it('Variant-#2 method The user Activation Successful!', async () => {
+    it('Variant-#2 The user Activation Successful!', async () => {
         activationData = await getActivationDataByCreatingUser(Data.fakeCredentialsUser2.email, Data.fakeCredentialsUser2.password);
         resultOfActivation = await registerActivationLink(activationData.data.data.userCreate);
         expect(resultOfActivation.activationString).toEqual('Activation Successful!');

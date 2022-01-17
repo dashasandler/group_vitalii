@@ -4,6 +4,11 @@ const ProblemsPage = require('../pageobjects/Problems.page');
 const ProblemsCreatePage = require('../pageobjects/ProblemsCreate.page');
 const globalNavigationPage = require("../pageobjects/GlobalNavigation.page");
 const OneProblemProfilePage = require("../pageobjects/OneProblemProfile.page")
+const {enter} = require("../helpers/uiMethods")
+
+
+
+
  describe('Positive testing', () => {
      before (async () => {
           browser.maximizeWindow();
@@ -37,22 +42,35 @@ const OneProblemProfilePage = require("../pageobjects/OneProblemProfile.page")
          await expect(ProblemsPage.filterFilters).toBeExisting();
       })
 
-     it.only ('Search company by name "Google"', async () => {
+     it.only('Create 13 problems', async () => {
+         await ProblemsPage.newProblem.click();
+         await ProblemsPage.inputTitle.setValue("Ira+Al234567ena");
+         await ProblemsPage.selectCompany("L + V");
+         await browser.pause(3000)
+         await ProblemsPage.inputPosition.setValue("Hello")
+         await ProblemsPage.inputContent.setValue("Boss")
+         await ProblemsPage.btnSave.click()
+     })
+
+
+
+
+     it ('Search company by name', async () => {
          await ProblemsPage.filterFilters.click();
          await ProblemsPage.filterColumnDropDownMenu.selectByVisibleText("Company") ;
          await ProblemsPage.filterOperatorsDropDownMenu.click();
          await ProblemsPage.filterOperatorsDropDownMenu.selectByVisibleText("equals");
          await ProblemsPage.filterValue.click();
          await ProblemsPage.filterValue.waitForDisplayed({timeout:7000})
-         await ProblemsPage.filterValue.setValue("Google");
+         await ProblemsPage.filterValue.setValue(companyName);
          const Loader = ProblemsPage.filterLoader;
          await expect(Loader).not.toBeDisplayed();
          await ProblemsPage.filterFilters.click();
-         const countProblems = await ProblemsPage.problemRowsContainTextInColumn("Google","Company");
-         await expect (countProblems).toHaveLength(10)
+         const countProblems = await ProblemsPage.problemRowsContainTextInColumn(companyName,"Company");
+         await expect (countProblems).toHaveLength(10);
      })
 
-     it.only ('Count company by name "Google" on all page', async () => {
+     it('Count particular companies', async () => {
 
      })
 

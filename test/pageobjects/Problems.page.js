@@ -43,17 +43,6 @@ class ProblemsPage extends Page {
         return $('//input[@class="MuiInput-input MuiInputBase-input css-mnn31"]');
     }
 
-    get filtersColumns() {
-        return $('#mui-922114006');
-    }
-
-    get filtersOperators() {
-        return $('#mui-772506109');
-    }
-
-    get filtersValue() {
-        return $('#mui-135881090');
-    }
 
     get paginationBack() {
         return $('button[@aria-label="Go to previous page"]');
@@ -67,13 +56,57 @@ class ProblemsPage extends Page {
         return $('//h6[text()="problems"]')
     }
 
-    open() {
-        return super.open('/problems');
+    get inputTitle() {
+        return $('#title')
     }
 
-    problemRowsContainTextInColumn(text, nameOfColumn){
-        return $$(`//*[contains(text(), '${text}') and @data-field='${nameOfColumn}']`);
+    get dropDownMenuCompany() {
+        return $("//li[@id='company-option-0']")
+    }
 
+    get company() {
+        return $("#company")
+    }
+
+    get dropDownMenu() {
+        return $("//ul[@id='company-listbox']")
+    }
+
+    get inputPosition() {
+        return $('#position')
+    }
+
+    get inputContent() {
+        return $("//textarea[@class='w-md-editor-text-input ']")
+    }
+
+    get btnSave() {
+        return $("//button[@type='submit']")
+    }
+
+
+    // async fillTheProblemForm(title, company, position, content){
+    //     await this.inputTitle.setValue(title);
+    //
+    //     await this.inputCompany.
+    //     await this.inputPosition.setValue(position);
+    //     await this.inputContent.setValue(content);
+    //     await this.btnSave.click();
+    // }
+
+    problemRowsContainTextInColumn(text, columnName){
+        return $$(`//*[contains(text(), '${text}') and @data-field='${columnName}']`);
+    }
+
+    async selectCompany(company) {
+        await this.company.click();
+        const option = await $(`//li[contains(.,"${company}")]`);
+        await option.click();
+    }
+
+
+    open() {
+        return super.open('/problems');
     }
 }
 

@@ -25,15 +25,12 @@ class PublicationsCreationPage extends Page {
 
     get arrowBack(){return $('//*[name()=\'path\' and contains(@d,\'M20 11H7.8\')]')}
 
-
-
-
     async fillPost (title,imageLink, description, content) {
-        await this.open();
         await this.inputPostTittle.setValue(title);
         await this.inputLinkImage.setValue(imageLink);
         await this.inputDescription.setValue(description);
         await this.inputContent.setValue(content);
+        await this.btnSavePost.click();
     }
 
     open() {

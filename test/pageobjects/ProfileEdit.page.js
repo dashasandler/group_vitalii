@@ -48,7 +48,7 @@ class ProfileEditPage extends Page {
     }
 
     get btnSave() {
-        return $('button[type="submit"]');
+        return $('//button[@type="submit"]');
     }
 
     get btnCancel() {

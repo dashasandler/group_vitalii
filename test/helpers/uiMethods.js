@@ -5,6 +5,12 @@ async function clearInput(element) {
     }
 }
 
+async function enter(element) {
+    while (await element.getValue() === '') {
+        await element.keys('Enter');
+    }
+}
+
 async  function getInitials(name){
     let initials = "";
     for (let i = 0; i < name.length; i++){
@@ -18,4 +24,4 @@ async function getElements (elem) {
     return res;
 }
 
-module.exports = { clearInput, getInitials, getElements };
+module.exports = { clearInput, getInitials, getElements, enter };

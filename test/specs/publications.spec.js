@@ -1,70 +1,78 @@
+let title = `New post${Date.now()}`;
+let imageLink = "https://halloweenwholesalers.com/pub/media/catalog/product/cache/9d08971813a040f8f96067a40f75c615/f/c/fc01032359.png";
+let description = "QA";
+let content = "I like JS";
+let anyText = "Hello world";
+let publicationTitle = "publications";
+let placeholderTitle = "Title *";
+let placeholderImage = "Image link";
+let placeholderDescription = "Description *";
+let placeholderContent = "Content *";
+let comment = "Hello world"
+let validationError = "ValidationError: title: Max length is 255 characters, description: Max length is 255 characters";
 const LoginPage = require('../pageobjects/Login.page');
 const PublicationsPage = require('../pageobjects/Publications.page');
 const LoginData = require('../data/login.data');
-const PublicationCreationPage = require("../pageobjects/PublicationCreation.page")
-const NovBar = require("../pageobjects/GlobalNavigation.page")
+const PublicationCreationPage = require("../pageobjects/PublicationCreation.page");
+const NovBar = require("../pageobjects/GlobalNavigation.page");
 
-describe('Positive testing', () => {
-    let charactets = Array.from(Array(89).keys()).toString();
+describe('Tests for publication page', () => {
+    let characters = Array.from(Array(89).keys()).toString();
 
     before(async () => {
         await browser.maximizeWindow();
         await LoginPage.login(LoginData.userCredentials.email, LoginData.userCredentials.password);
     });
 
-    it("should publicationsTitle be exist and has text publications ", async () => {
+    it("Publications title should exist and has publications text", async () => {
         await expect(PublicationsPage.publicationsTitle).toBeExisting();
-        await expect(PublicationsPage.publicationsTitle).toHaveTextContaining('publications');
+        await expect(PublicationsPage.publicationsTitle).toHaveTextContaining(publicationTitle);
     });
 
-    it('Verify post is created', async () => {
+    it('Verify posts are created', async () => {
         for (let i = 1; i <= 3; i++) {
             await PublicationsPage.btnAddPost.click();
-            await PublicationCreationPage.inputPostTittle.setValue(`Maine!!!! ${i}`);
-            await PublicationCreationPage.inputDescription.setValue(`New Position ${i}`);
-            await PublicationCreationPage.inputContent.setValue(`Minimum qualifications ${i}`);
-            await PublicationCreationPage.btnSavePost.click();
+            await PublicationCreationPage.fillPost(title + `${i}`, imageLink, description, content);
             let tempTitle = await PublicationsPage.publications.getText();
-            await expect(tempTitle).toEqual(`Maine!!!! ${i}`);
+            await expect(tempTitle).toEqual(title + `${i}`);
         }
     });
 
     it("should publicationsTitle be exist and has text publications ", async () => {
         await PublicationsPage.btnAddPost.click();
-        await PublicationCreationPage.inputPostTittle.setValue(charactets);
-        await PublicationCreationPage.inputDescription.setValue(charactets);
-        await PublicationCreationPage.inputContent.setValue("any text")
+        await PublicationCreationPage.inputPostTittle.setValue(characters);
+        await PublicationCreationPage.inputDescription.setValue(characters);
+        await PublicationCreationPage.inputContent.setValue(anyText);
         await PublicationCreationPage.btnSavePost.click();
-        await expect(PublicationCreationPage.warningLimitCharacters).toHaveText("ValidationError: title: Max length is 255 characters, description: Max length is 255 characters")
+        await expect(PublicationCreationPage.warningLimitCharacters).toHaveText(validationError);
     });
 
     it("Verify placeholders on the creation page", async () => {
         await browser.refresh();
-        await expect(PublicationCreationPage.titlePlaceholder).toHaveTextContaining("Title *");
-        await expect(PublicationCreationPage.imagePlaceholder).toHaveTextContaining("Image link");
-        await expect(PublicationCreationPage.DescriptionPlaceholder).toHaveTextContaining("Description *");
-        await expect(PublicationCreationPage.ContentPlaceholder).toHaveTextContaining("Content *");
+        await expect(PublicationCreationPage.titlePlaceholder).toHaveTextContaining(placeholderTitle);
+        await expect(PublicationCreationPage.imagePlaceholder).toHaveTextContaining(placeholderImage);
+        await expect(PublicationCreationPage.DescriptionPlaceholder).toHaveTextContaining(placeholderDescription);
+        await expect(PublicationCreationPage.ContentPlaceholder).toHaveTextContaining(placeholderContent);
     });
 
     it("After clicking on the arrow back, the user returned on the publication page", async () => {
-        await PublicationCreationPage.arrowBack.click()
-        await expect(PublicationsPage.publicationsTitle).toHaveTextContaining("publications")
+        await PublicationCreationPage.arrowBack.click();
+        await expect(PublicationsPage.publicationsTitle).toHaveTextContaining(publicationTitle);
     });
 
     it("Verify comment is created ", async () => {
         await PublicationsPage.publications.click();
         await PublicationsPage.btnComment.click();
-        await PublicationsPage.inputComment.setValue('Hello world');
+        await PublicationsPage.inputComment.setValue(anyText);
         await PublicationsPage.sendComment.click();
         let temp = await PublicationsPage.comments.getText();
-        await expect(temp).toEqual('Hello world');
+        await expect(temp).toEqual(anyText);
     });
 
-    it("Verify 3 comments is created ", async () => {
-        await PublicationsPage.open();
+    it.only("Verify 3 comments is created ", async () => {
         await PublicationsPage.publications.click();
         await PublicationsPage.btnComment.click();
-        await PublicationsPage.createComments();
+        await PublicationsPage.createComments(comment);
     });
 
     it ("Verify the like is created", async () => {
